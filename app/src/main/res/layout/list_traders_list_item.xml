@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="@dimen/traders_item_height">
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_marginTop="@dimen/traders_item_margin"
+        android:layout_width="@dimen/traders_item_avatar_size"
+        android:layout_height="@dimen/traders_item_avatar_size" />
+</RelativeLayout>

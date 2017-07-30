@@ -2,4 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="loader_size">75dp</dimen>
+
+    <dimen name="traders_item_height">200dp</dimen>
+    <dimen name="traders_item_avatar_size">90dp</dimen>
+    <dimen name="traders_item_margin">40dp</dimen>
 </resources>
