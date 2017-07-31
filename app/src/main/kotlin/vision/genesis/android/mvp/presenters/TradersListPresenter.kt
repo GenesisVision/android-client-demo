@@ -1,8 +1,10 @@
 package vision.genesis.android.mvp.presenters
 
+import android.content.Context
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import vision.genesis.android.GenesisVisionApp
+import vision.genesis.android.R
 import vision.genesis.android.mvp.models.Constants
 import vision.genesis.android.mvp.models.domain.GetTradersListInteractor
 import vision.genesis.android.mvp.views.TradersListView
@@ -15,6 +17,9 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
     lateinit var getTradersListInteractor: GetTradersListInteractor
 
     private var canLoadMore:Boolean = true
+
+    @Inject
+    lateinit var context: Context
 
     init {
         GenesisVisionApp.getAppComponent().inject(this)
@@ -59,7 +64,7 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
                 viewState.hideError()
             }, {
                 hideLoading()
-                viewState.showError(it.message ?: "Can not load traders list")
+                viewState.showError(it.message ?: context.getString(R.string.can_not_load_traders))
             })
 
         unsubscribeOnDestroy(subscription)

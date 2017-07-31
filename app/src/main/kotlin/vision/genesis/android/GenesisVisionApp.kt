@@ -3,7 +3,7 @@ package vision.genesis.android
 import android.app.Application
 import vision.genesis.android.di.AppComponent
 import vision.genesis.android.di.DaggerAppComponent
-import vision.genesis.android.di.modules.ApiModule
+import vision.genesis.android.di.modules.ContextModule
 import vision.genesis.android.di.modules.InteractorsModule
 import vision.genesis.android.di.modules.NavigationModule
 
@@ -23,6 +23,7 @@ class GenesisVisionApp : Application() {
     private fun createApplicationComponent() {
         sApplicationComponent = DaggerAppComponent.builder()
                 .interactorsModule(InteractorsModule())
+                .contextModule(ContextModule(this))
                 .navigationModule(NavigationModule())
                 .build()
     }

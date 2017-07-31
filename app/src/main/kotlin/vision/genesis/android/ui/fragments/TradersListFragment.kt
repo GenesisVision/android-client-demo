@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,13 @@ import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_traders_list.*
 import vision.genesis.android.R
+import vision.genesis.android.mvp.models.Constants
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.presenters.TradersListPresenter
 import vision.genesis.android.mvp.views.TradersListView
 import vision.genesis.android.ui.adapters.TradersListAdapter
 
-class TradersListFragment: MvpAppCompatFragment(), TradersListView {
+class TradersListFragment : MvpAppCompatFragment(), TradersListView {
 
     @InjectPresenter(type = PresenterType.GLOBAL)
     lateinit var tradersListPresenter: TradersListPresenter
@@ -28,8 +30,10 @@ class TradersListFragment: MvpAppCompatFragment(), TradersListView {
 
     private var adapter: TradersListAdapter = TradersListAdapter()
 
+    private var loadingNewTraders: Boolean = false
+
     companion object Factory {
-        fun create():TradersListFragment = TradersListFragment()
+        fun create(): TradersListFragment = TradersListFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,13 +50,29 @@ class TradersListFragment: MvpAppCompatFragment(), TradersListView {
         loader.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary),
                 android.graphics.PorterDuff.Mode.SRC_IN)
 
-        tradersList.layoutManager = LinearLayoutManager(context)
+        val linearLayoutManager = LinearLayoutManager(context)
+        tradersList.layoutManager = linearLayoutManager
 
         tradersList.adapter = adapter
 
         refreshLayout.setOnRefreshListener {
             tradersListPresenter.refreshTraders()
         }
+
+        tradersList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                recyclerView?.post({
+                    val visibleThreshold = 2
+                    val totalItemCount = linearLayoutManager.itemCount
+                    val lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition()
+                    if (!loadingNewTraders && totalItemCount <= (lastVisibleItem + visibleThreshold)
+                            && !refreshLayout.isRefreshing && totalItemCount >= Constants.TRADERS_LIST_PAGE_SIZE) {
+                        tradersListPresenter.loadNextTraders(totalItemCount)
+                    }
+                })
+            }
+        })
     }
 
     override fun setTraders(traders: List<TraderInfo>) {
@@ -73,8 +93,7 @@ class TradersListFragment: MvpAppCompatFragment(), TradersListView {
     }
 
     override fun showError(message: String) {
-        Snackbar.make(refreshLayout, message, Snackbar.LENGTH_SHORT)
-
+        Snackbar.make(rootContainer, message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun hideError() {
@@ -82,11 +101,14 @@ class TradersListFragment: MvpAppCompatFragment(), TradersListView {
     }
 
     override fun showListProgress() {
+        loadingNewTraders = true
+        adapter.showListProgress()
 
     }
 
     override fun hideListProgress() {
-
+        loadingNewTraders = false
+        adapter.hideListProgress()
     }
 
     override fun showRefreshing() {

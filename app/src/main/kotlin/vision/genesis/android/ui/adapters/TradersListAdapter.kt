@@ -13,12 +13,12 @@ import vision.genesis.android.mvp.models.data.TraderInfo
 import java.util.*
 
 class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    val VIEW_ITEM = 1
-    val VIEW_PROG = 0
+    private val VIEW_ITEM = 1
+    private val VIEW_PROG = 0
 
-    val traders: MutableList<TraderInfo> = ArrayList()
+    private val traders: MutableList<TraderInfo> = ArrayList()
 
-    var showProgress: Boolean = false
+    private var showProgress: Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
         var vh: RecyclerView.ViewHolder? = null
@@ -58,6 +58,20 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val lastPosition = traders.size - 1
         traders.addAll(newTraders)
         notifyItemRangeInserted(lastPosition, traders.size - 1)
+    }
+
+    fun showListProgress() {
+        if (!showProgress) {
+            notifyItemInserted(traders.size)
+        }
+        showProgress = true
+    }
+
+    fun hideListProgress() {
+        if (showProgress) {
+            notifyItemRemoved(traders.size)
+        }
+        showProgress = false
     }
 
     override fun getItemViewType(position: Int): Int {

@@ -2,4 +2,5 @@
     <string name="app_name">Genesis Vision</string>
 
     <string name="traders">Traders</string>
+    <string name="can_not_load_traders">Can not load traders list</string>
 </resources>
