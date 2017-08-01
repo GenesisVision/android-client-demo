@@ -103,7 +103,6 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
     override fun showListProgress() {
         loadingNewTraders = true
         adapter.showListProgress()
-
     }
 
     override fun hideListProgress() {

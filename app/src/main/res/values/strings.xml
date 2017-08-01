@@ -3,4 +3,9 @@
 
     <string name="traders">Traders</string>
     <string name="can_not_load_traders">Can not load traders list</string>
+
+    <string name="deposit">Deposit:</string>
+    <string name="trades">Trades:</string>
+    <string name="weeks">Weeks:</string>
+    <string name="profit">Profit:</string>
 </resources>

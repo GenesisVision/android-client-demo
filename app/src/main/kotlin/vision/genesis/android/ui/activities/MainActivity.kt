@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.toast
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.android.SupportFragmentNavigator
+import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Replace
 import vision.genesis.android.GenesisVisionApp
 import vision.genesis.android.R
@@ -28,6 +30,8 @@ class MainActivity : MvpAppCompatActivity() {
         GenesisVisionApp.getAppComponent().inject(this)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolbar)
+
         if (savedInstanceState == null) {
             navigator.applyCommand(Replace(Screens.TRADERS_LIST, 1))
         }
@@ -46,6 +50,7 @@ class MainActivity : MvpAppCompatActivity() {
     private val navigator: Navigator = object: SupportFragmentNavigator(supportFragmentManager, R.id.mainContainer) {
         override fun createFragment(screenKey: String?, data: Any?): Fragment? {
             if (screenKey == Screens.TRADERS_LIST) {
+                title = getString(R.string.traders)
                 return TradersListFragment()
             } else {
                 return null

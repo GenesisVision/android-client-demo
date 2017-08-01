@@ -55,23 +55,23 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addTraders(newTraders: List<TraderInfo>) {
-        val lastPosition = traders.size - 1
+        val lastPosition = itemCount
         traders.addAll(newTraders)
-        notifyItemRangeInserted(lastPosition, traders.size - 1)
+        notifyItemRangeInserted(lastPosition, itemCount - lastPosition)
     }
 
     fun showListProgress() {
         if (!showProgress) {
-            notifyItemInserted(traders.size)
+            showProgress = true
+            notifyItemInserted(itemCount)
         }
-        showProgress = true
     }
 
     fun hideListProgress() {
         if (showProgress) {
-            notifyItemRemoved(traders.size)
+            showProgress = false
+            notifyItemRemoved(itemCount)
         }
-        showProgress = false
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -84,7 +84,14 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class TraderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bindTrader(trader: TraderInfo) {
-            itemView.avatar.loadUrl(trader.avatar)
+            itemView.avatarView.loadUrl(trader.avatar)
+            itemView.levelView.text = trader.level.toString()
+            itemView.nameView.text = trader.name
+            itemView.depositView.text = trader.deposit.toString() + " " + trader.currency
+            itemView.tradesView.text = trader.trades.toString()
+            itemView.weeksView.text = trader.weeks.toString()
+            itemView.currencyView.text = trader.currency
+            itemView.profitView.text = trader.profit.toString() + "%"
         }
     }
 
