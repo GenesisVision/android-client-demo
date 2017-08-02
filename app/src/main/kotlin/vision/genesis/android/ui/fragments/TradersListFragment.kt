@@ -38,6 +38,7 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        activity.title = getString(R.string.traders)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

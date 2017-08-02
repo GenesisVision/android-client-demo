@@ -88,19 +88,26 @@
         android:layout_toRightOf="@+id/weeksTitleView"
         android:layout_below="@+id/tradesTitleView"
         style="@style/text_items_content" />
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/profitChartView"
+        android:layout_width="@dimen/traders_item_chart_width"
+        android:layout_height="@dimen/traders_item_chart_height"
+        android:padding="0dp"
+        android:layout_marginTop="@dimen/traders_item_margin"
+        android:layout_alignParentRight="true" />
     <TextView
         android:id="@+id/profitTitleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/profitChartView"
         android:layout_toLeftOf="@+id/profitView"
-        android:layout_marginTop="@dimen/traders_item_margin"
         style="@style/text_items_title"
         android:text="@string/profit" />
     <TextView
         android:id="@+id/profitView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/traders_item_margin"
+        android:layout_below="@id/profitChartView"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_alignParentRight="true"
         style="@style/text_items_content" />

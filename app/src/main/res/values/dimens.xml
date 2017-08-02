@@ -14,6 +14,9 @@
     <dimen name="traders_item_level_corner">11dp</dimen>
     <dimen name="traders_item_level_size">22dp</dimen>
 
+    <dimen name="traders_item_chart_width">120dp</dimen>
+    <dimen name="traders_item_chart_height">50dp</dimen>
+
     <dimen name="small_font_size">12sp</dimen>
     <dimen name="regular_font_size">16sp</dimen>
     <dimen name="header_font_size">20sp</dimen>

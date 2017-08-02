@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.list_traders_list_item.view.*
 import vision.genesis.android.R
 import vision.genesis.android.extensions.loadUrl
@@ -92,6 +95,42 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.weeksView.text = trader.weeks.toString()
             itemView.currencyView.text = trader.currency
             itemView.profitView.text = trader.profit.toString() + "%"
+
+            setChartData(getEntries(trader))
+        }
+        private fun setChartData(entries: List<Entry>) {
+            val set = LineDataSet(entries, "")
+            set.label = ""
+            set.setDrawValues(false)
+            set.lineWidth = 2f
+            set.color = ContextCompat.getColor(itemView.context, R.color.colorAzure)
+            set.setDrawCircles(false)
+            val data = LineData(set)
+            itemView.profitChartView.data = data
+
+            itemView.profitChartView.description.isEnabled = false
+            itemView.profitChartView.setDrawGridBackground(false)
+            itemView.profitChartView.isDragEnabled = false
+            itemView.profitChartView.setTouchEnabled(false)
+            itemView.profitChartView.xAxis.isEnabled = false
+            itemView.profitChartView.axisLeft.isEnabled = false
+            itemView.profitChartView.axisRight.isEnabled = false
+            itemView.profitChartView.legend.isEnabled = false
+            itemView.profitChartView.setDrawBorders(false)
+            itemView.profitChartView.isAutoScaleMinMaxEnabled = false
+
+        }
+
+        private fun getEntries(traderInfo: TraderInfo): List<Entry> {
+            val values = ArrayList<Entry>()
+
+            var i = 0f
+            traderInfo.chartEntries.forEach {
+                values.add(Entry(i, it))
+                i++
+            }
+
+            return values
         }
     }
 

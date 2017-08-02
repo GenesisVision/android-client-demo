@@ -50,7 +50,6 @@ class MainActivity : MvpAppCompatActivity() {
     private val navigator: Navigator = object: SupportFragmentNavigator(supportFragmentManager, R.id.mainContainer) {
         override fun createFragment(screenKey: String?, data: Any?): Fragment? {
             if (screenKey == Screens.TRADERS_LIST) {
-                title = getString(R.string.traders)
                 return TradersListFragment()
             } else {
                 return null
