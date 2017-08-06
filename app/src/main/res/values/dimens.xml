@@ -6,10 +6,12 @@
     <dimen name="loader_size">75dp</dimen>
 
     <dimen name="traders_item_height">180dp</dimen>
-    <dimen name="traders_item_avatar_size">80dp</dimen>
-    <dimen name="traders_item_margin">30dp</dimen>
+    <dimen name="traders_item_avatar_size">70dp</dimen>
+    <dimen name="traders_item_margin_top">30dp</dimen>
+    <dimen name="traders_item_margin_left">12dp</dimen>
     <dimen name="traders_item_margin_small">6dp</dimen>
     <dimen name="traders_item_padding">2dp</dimen>
+    <dimen name="traders_item_title_max_width_diff">270dp</dimen>
 
     <dimen name="traders_item_level_corner">11dp</dimen>
     <dimen name="traders_item_level_size">22dp</dimen>

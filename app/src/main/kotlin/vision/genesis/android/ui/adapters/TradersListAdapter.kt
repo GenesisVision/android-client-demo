@@ -23,7 +23,12 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var showProgress: Boolean = false
 
+    private var maxTitleWidth: Int = 9999
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
+        if (parent != null) {
+            maxTitleWidth = parent.measuredWidth - parent.context.resources.getDimension(R.dimen.traders_item_title_max_width_diff).toInt()
+        }
         var vh: RecyclerView.ViewHolder? = null
         if (viewType == VIEW_ITEM) {
             vh = TraderViewHolder(LayoutInflater.from(parent?.context).inflate(R.layout.list_traders_list_item, parent, false))
@@ -35,7 +40,7 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is TraderViewHolder) {
-            holder.bindTrader(traders[position])
+            holder.bindTrader(traders[position], maxTitleWidth)
         }
     }
 
@@ -86,7 +91,7 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class TraderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTrader(trader: TraderInfo) {
+        fun bindTrader(trader: TraderInfo, maxTitleWidth: Int) {
             itemView.avatarView.loadUrl(trader.avatar)
             itemView.levelView.text = trader.level.toString()
             itemView.nameView.text = trader.name
@@ -95,6 +100,8 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.weeksView.text = trader.weeks.toString()
             itemView.currencyView.text = trader.currency
             itemView.profitView.text = trader.profit.toString() + "%"
+
+            itemView.nameView.maxWidth = maxTitleWidth
 
             setChartData(getEntries(trader))
         }
