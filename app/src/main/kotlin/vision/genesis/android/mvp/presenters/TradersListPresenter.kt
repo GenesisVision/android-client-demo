@@ -3,9 +3,12 @@ package vision.genesis.android.mvp.presenters
 import android.content.Context
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
+import ru.terrakok.cicerone.Router
 import vision.genesis.android.GenesisVisionApp
 import vision.genesis.android.R
+import vision.genesis.android.Screens
 import vision.genesis.android.mvp.models.Constants
+import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.models.domain.GetTradersListInteractor
 import vision.genesis.android.mvp.views.TradersListView
 import javax.inject.Inject
@@ -21,12 +24,16 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
     @Inject
     lateinit var context: Context
 
+    @Inject
+    lateinit var router: Router
+
     init {
         GenesisVisionApp.getAppComponent().inject(this)
     }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        viewState.showToolbar()
         viewState.onStartLoading()
         loadTradersList(0)
     }
@@ -74,5 +81,9 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
         viewState.onFinishLoading()
         viewState.hideRefreshing()
         viewState.hideListProgress()
+    }
+
+    fun showTraderProfile(traderInfo: TraderInfo) {
+        router.navigateTo(Screens.TRADER_PROFILE, traderInfo)
     }
 }

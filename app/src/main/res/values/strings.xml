@@ -8,4 +8,6 @@
     <string name="trades">Trades:</string>
     <string name="weeks">Weeks:</string>
     <string name="profit">Profit:</string>
+
+    <string name="trader_profile">Trader Profile</string>
 </resources>

@@ -13,6 +13,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.PresenterType
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.fragment_traders_list.*
+import kotlinx.android.synthetic.main.toolbar.*
 import vision.genesis.android.R
 import vision.genesis.android.mvp.models.Constants
 import vision.genesis.android.mvp.models.data.TraderInfo
@@ -28,7 +29,7 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
     @ProvidePresenter(type = PresenterType.GLOBAL)
     fun providerTradersListPresenter() = TradersListPresenter()
 
-    private var adapter: TradersListAdapter = TradersListAdapter()
+    private lateinit var adapter: TradersListAdapter
 
     private var loadingNewTraders: Boolean = false
 
@@ -38,7 +39,7 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity.title = getString(R.string.traders)
+        adapter = TradersListAdapter(tradersListPresenter)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -74,6 +75,13 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
                 })
             }
         })
+    }
+
+    override fun showToolbar() {
+        activity.title = getString(R.string.traders)
+        activity.toolbar.background = ContextCompat.getDrawable(context, R.drawable.background_white_toolbar)
+        activity.toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.colorFontDark))
+        activity.toolbar.navigationIcon = null
     }
 
     override fun setTraders(traders: List<TraderInfo>) {

@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_toolbar"
+        android:background="@drawable/background_white_toolbar"
         android:minHeight="?attr/actionBarSize"
         app:layout_scrollFlags="scroll|enterAlways"/>
 </android.support.design.widget.AppBarLayout>

@@ -13,9 +13,10 @@ import kotlinx.android.synthetic.main.list_traders_list_item.view.*
 import vision.genesis.android.R
 import vision.genesis.android.extensions.loadUrl
 import vision.genesis.android.mvp.models.data.TraderInfo
+import vision.genesis.android.mvp.presenters.TradersListPresenter
 import java.util.*
 
-class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val VIEW_ITEM = 1
     private val VIEW_PROG = 0
 
@@ -40,7 +41,7 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is TraderViewHolder) {
-            holder.bindTrader(traders[position], maxTitleWidth)
+            holder.bindTrader(traders[position], maxTitleWidth, parentPresenter)
         }
     }
 
@@ -91,7 +92,7 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class TraderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTrader(trader: TraderInfo, maxTitleWidth: Int) {
+        fun bindTrader(trader: TraderInfo, maxTitleWidth: Int, parentPresenter: TradersListPresenter) {
             itemView.avatarView.loadUrl(trader.avatar)
             itemView.levelView.text = trader.level.toString()
             itemView.nameView.text = trader.name
@@ -104,6 +105,10 @@ class TradersListAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.nameView.maxWidth = maxTitleWidth
 
             setChartData(getEntries(trader))
+
+            itemView.setOnClickListener {
+                parentPresenter.showTraderProfile(trader)
+            }
         }
         private fun setChartData(entries: List<Entry>) {
             val set = LineDataSet(entries, "")

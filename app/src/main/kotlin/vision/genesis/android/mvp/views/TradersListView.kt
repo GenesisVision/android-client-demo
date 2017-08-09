@@ -9,6 +9,8 @@ interface TradersListView : MvpView {
     fun showError(message: String)
     fun hideError()
 
+    fun showToolbar()
+
     fun onStartLoading()
     fun onFinishLoading()
 
