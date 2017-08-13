@@ -47,15 +47,13 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loader.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, android.R.color.white),
+        loader.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary),
                 android.graphics.PorterDuff.Mode.SRC_IN)
     }
 
     override fun showToolbar() {
         activity.title = getString(R.string.trader_profile)
-        activity.toolbar.background = ContextCompat.getDrawable(context, R.drawable.background_dark_toolbar)
-        activity.toolbar.setTitleTextColor(ContextCompat.getColor(context, android.R.color.white))
-        activity.toolbar.navigationIcon = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_white_24dp)
+        activity.toolbar.navigationIcon = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_black_24dp)
         activity.toolbar.setNavigationOnClickListener {
             traderProfilePresenter.goToBackScreen()
         }

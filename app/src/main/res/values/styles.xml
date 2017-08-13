@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/colorGrayBackground</item>
         <item name="android:background">@null</item>
     </style>
 
@@ -29,25 +29,27 @@
 
     <style name="text_items_title">
         <item name="android:textSize">@dimen/regular_font_size</item>
-        <item name="android:textColor">@color/colorFontMedium</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:layout_marginLeft">@dimen/traders_item_margin_left</item>
-        <item name="android:layout_marginTop">@dimen/traders_item_margin_small</item>
+        <item name="android:textColor">@color/colorFontLight</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="text_items_content">
         <item name="android:textSize">@dimen/regular_font_size</item>
-        <item name="android:textColor">@color/colorFontDark</item>
+        <item name="android:textColor">@color/colorFontMedium</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:layout_marginLeft">@dimen/traders_item_margin_left</item>
-        <item name="android:layout_marginTop">@dimen/traders_item_margin_small</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
     <style name="text_items_label">
         <item name="android:textSize">@dimen/regular_font_size</item>
-        <item name="android:textColor">@color/colorFontLight</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">normal</item>
         <item name="android:maxLines">1</item>
@@ -55,7 +57,7 @@
         <item name="android:paddingRight">@dimen/traders_item_margin_small</item>
         <item name="android:paddingTop">@dimen/traders_item_padding</item>
         <item name="android:paddingBottom">@dimen/traders_item_padding</item>
-        <item name="android:layout_marginLeft">@dimen/traders_item_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
         <item name="android:background">@drawable/background_traders_currency</item>
     </style>
 

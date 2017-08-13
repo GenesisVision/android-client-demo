@@ -51,6 +51,7 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
 
         loader.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary),
                 android.graphics.PorterDuff.Mode.SRC_IN)
+        refreshLayout.setColorSchemeResources(R.color.colorPrimary)
 
         val linearLayoutManager = LinearLayoutManager(context)
         tradersList.layoutManager = linearLayoutManager

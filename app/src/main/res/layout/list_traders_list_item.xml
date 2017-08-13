@@ -9,7 +9,7 @@
         android:layout_width="@dimen/traders_item_avatar_size"
         android:layout_height="@dimen/traders_item_avatar_size"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/traders_item_margin_top">
+        android:layout_marginTop="@dimen/traders_item_margin_vertical">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatarView"
             android:layout_width="@dimen/traders_item_avatar_size"
@@ -29,93 +29,135 @@
         android:id="@+id/nameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxWidth="140dp"
         android:layout_toRightOf="@+id/imagesContainer"
-        android:layout_marginTop="@dimen/traders_item_margin_top"
+        android:layout_marginTop="@dimen/traders_item_margin_title_top"
         style="@style/text_items_header" />
     <TextView
         android:id="@+id/currencyView"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/nameView"
-        android:layout_marginTop="@dimen/traders_item_margin_top"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/traders_item_margin_title_top"
         style="@style/text_items_label"/>
-    <TextView
-        android:id="@+id/depositTitleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imagesContainer"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/nameView"
-        style="@style/text_items_title"
-        android:text="@string/deposit" />
-    <TextView
-        android:id="@+id/depositView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/depositTitleView"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/nameView"
-        style="@style/text_items_content" />
-    <TextView
-        android:id="@+id/tradesTitleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imagesContainer"
-        android:layout_below="@+id/depositTitleView"
-        style="@style/text_items_title"
-        android:text="@string/trades" />
-    <TextView
-        android:id="@+id/tradesView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tradesTitleView"
-        android:layout_below="@+id/depositTitleView"
-        style="@style/text_items_content" />
-    <TextView
-        android:id="@+id/weeksTitleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imagesContainer"
-        android:layout_below="@+id/tradesTitleView"
-        style="@style/text_items_title"
-        android:text="@string/weeks" />
-    <TextView
-        android:id="@+id/weeksView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/weeksTitleView"
-        android:layout_below="@+id/tradesTitleView"
-        style="@style/text_items_content" />
+    <LinearLayout
+        android:id="@+id/depositInfoContainer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/depositView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_items_content" />
+        <TextView
+            android:id="@+id/depositTitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_items_title"
+            android:text="@string/deposit" />
+    </LinearLayout>
+    <View
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:layout_toRightOf="@id/depositInfoContainer"
+        android:background="@color/colorGrayDivider" />
+    <LinearLayout
+        android:id="@+id/tradesInfoContainer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_toRightOf="@id/depositInfoContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tradesView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/text_items_content" />
+        <TextView
+            android:id="@+id/tradesTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_items_title"
+            android:text="@string/trades" />
+    </LinearLayout>
+    <View
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:layout_toRightOf="@id/tradesInfoContainer"
+        android:background="@color/colorGrayDivider" />
+    <LinearLayout
+        android:id="@+id/weekInfoContainer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_toRightOf="@id/tradesInfoContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/weeksView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_items_content" />
+        <TextView
+            android:id="@+id/weeksTitleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_items_title"
+            android:text="@string/weeks" />
+    </LinearLayout>
+    <View
+        android:layout_width="@dimen/divider_width"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:layout_toRightOf="@id/weekInfoContainer"
+        android:background="@color/colorGrayDivider" />
+    <LinearLayout
+        android:id="@+id/profitInfoContainer"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/traders_item_info_container_height"
+        android:layout_toRightOf="@id/weekInfoContainer"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/traders_item_margin_vertical"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/profitView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_items_content"
+            android:textColor="@color/colorPrimary" />
+        <TextView
+            android:id="@+id/profitTitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_items_title"
+            android:textColor="@color/colorFontDark"
+            android:text="@string/profit" />
+    </LinearLayout>
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/profitChartView"
         android:layout_width="@dimen/traders_item_chart_width"
         android:layout_height="@dimen/traders_item_chart_height"
         android:padding="0dp"
-        android:layout_marginTop="@dimen/traders_item_margin_top"
-        android:layout_alignParentRight="true" />
-    <TextView
-        android:id="@+id/profitTitleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profitChartView"
-        android:layout_toLeftOf="@+id/profitView"
-        style="@style/text_items_title"
-        android:text="@string/profit" />
-    <TextView
-        android:id="@+id/profitView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profitChartView"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_alignParentRight="true"
-        style="@style/text_items_content" />
+        android:layout_centerInParent="true" />
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/divider_width"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:background="@color/colorGrayLight" />
+        android:background="@color/colorGrayDivider" />
 </RelativeLayout>

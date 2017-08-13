@@ -25,10 +25,12 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
     private var showProgress: Boolean = false
 
     private var maxTitleWidth: Int = 9999
+    private var infoContainerWidth: Int = 300
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
         if (parent != null) {
             maxTitleWidth = parent.measuredWidth - parent.context.resources.getDimension(R.dimen.traders_item_title_max_width_diff).toInt()
+            infoContainerWidth = parent.measuredWidth / 4
         }
         var vh: RecyclerView.ViewHolder? = null
         if (viewType == VIEW_ITEM) {
@@ -41,7 +43,7 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         if (holder is TraderViewHolder) {
-            holder.bindTrader(traders[position], maxTitleWidth, parentPresenter)
+            holder.bindTrader(traders[position], maxTitleWidth, infoContainerWidth, parentPresenter)
         }
     }
 
@@ -92,7 +94,7 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
     }
 
     class TraderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindTrader(trader: TraderInfo, maxTitleWidth: Int, parentPresenter: TradersListPresenter) {
+        fun bindTrader(trader: TraderInfo, maxTitleWidth: Int, infoContainerWidth: Int, parentPresenter: TradersListPresenter) {
             itemView.avatarView.loadUrl(trader.avatar)
             itemView.levelView.text = trader.level.toString()
             itemView.nameView.text = trader.name
@@ -102,14 +104,15 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
             itemView.currencyView.text = trader.currency
             itemView.profitView.text = trader.profit.toString() + "%"
 
-            itemView.nameView.maxWidth = maxTitleWidth
-
             setChartData(getEntries(trader))
 
             itemView.setOnClickListener {
                 parentPresenter.showTraderProfile(trader)
             }
+
+            setLayoutSizes(maxTitleWidth, infoContainerWidth)
         }
+
         private fun setChartData(entries: List<Entry>) {
             val set = LineDataSet(entries, "")
             set.label = ""
@@ -143,6 +146,15 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
             }
 
             return values
+        }
+
+        private fun setLayoutSizes(maxTitleWidth: Int, infoContainerWidth: Int) {
+            itemView.nameView.maxWidth = maxTitleWidth
+
+            itemView.depositInfoContainer.layoutParams.width = infoContainerWidth
+            itemView.tradesInfoContainer.layoutParams.width = infoContainerWidth
+            itemView.weekInfoContainer.layoutParams.width = infoContainerWidth
+            itemView.profitInfoContainer.layoutParams.width = infoContainerWidth
         }
     }
 
