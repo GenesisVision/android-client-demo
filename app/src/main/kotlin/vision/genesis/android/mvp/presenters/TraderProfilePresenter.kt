@@ -4,11 +4,12 @@ import com.arellomobile.mvp.InjectViewState
 import ru.terrakok.cicerone.Router
 import vision.genesis.android.GenesisVisionApp
 import vision.genesis.android.Screens
+import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.views.TraderProfileView
 import javax.inject.Inject
 
 @InjectViewState
-class TraderProfilePresenter: BasePresenter<TraderProfileView>() {
+class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderProfileView>() {
     @Inject
     lateinit var router: Router
 
@@ -18,7 +19,7 @@ class TraderProfilePresenter: BasePresenter<TraderProfileView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.showToolbar()
+        viewState.showTraderInfo(traderInfo)
     }
 
     fun goToBackScreen() {

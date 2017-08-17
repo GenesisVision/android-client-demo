@@ -23,13 +23,18 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
     lateinit var traderProfilePresenter: TraderProfilePresenter
 
     @ProvidePresenter(type = PresenterType.LOCAL)
-    fun providerTraderProfilePresenter() = TraderProfilePresenter()
+    fun provideTraderProfilePresenter(): TraderProfilePresenter {
+        val traderInfo = arguments?.getParcelable<TraderInfo>(TRADER_INFO_ARG)!!
+        return TraderProfilePresenter(traderInfo)
+    }
 
     companion object Factory {
+        val TRADER_INFO_ARG = "trader"
+
         fun create(traderInfo: TraderInfo): TraderProfileFragment {
             val instance = TraderProfileFragment()
             val args = Bundle()
-            args.putLong("traderId", traderInfo.id)
+            args.putParcelable(TRADER_INFO_ARG, traderInfo)
             instance.arguments = args
             return instance
         }
@@ -37,7 +42,6 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity.title = getString(R.string.trader_profile)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,8 +55,18 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
                 android.graphics.PorterDuff.Mode.SRC_IN)
     }
 
-    override fun showToolbar() {
-        activity.title = getString(R.string.trader_profile)
+    override fun showTraderInfo(traderInfo: TraderInfo) {
+        showToolbar(traderInfo.name)
+
+        depositView.text = traderInfo.deposit.toString()
+        fundView.text = traderInfo.fund.toString()
+        profitView.text = traderInfo.profit.toString()
+
+        daysLeftView.text = resources.getString(R.string.days_left, traderInfo.daysLeft)
+    }
+
+    private fun showToolbar(title: String) {
+        activity.title = title
         activity.toolbar.navigationIcon = ContextCompat.getDrawable(context, R.drawable.ic_arrow_back_black_24dp)
         activity.toolbar.setNavigationOnClickListener {
             traderProfilePresenter.goToBackScreen()

@@ -26,9 +26,6 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
     @InjectPresenter(type = PresenterType.GLOBAL)
     lateinit var tradersListPresenter: TradersListPresenter
 
-    @ProvidePresenter(type = PresenterType.GLOBAL)
-    fun providerTradersListPresenter() = TradersListPresenter()
-
     private lateinit var adapter: TradersListAdapter
 
     private var loadingNewTraders: Boolean = false
@@ -80,7 +77,6 @@ class TradersListFragment : MvpAppCompatFragment(), TradersListView {
 
     override fun showToolbar() {
         activity.title = getString(R.string.traders)
-        activity.toolbar.background = ContextCompat.getDrawable(context, R.drawable.background_white_toolbar)
         activity.toolbar.setTitleTextColor(ContextCompat.getColor(context, R.color.colorFontDark))
         activity.toolbar.navigationIcon = null
     }

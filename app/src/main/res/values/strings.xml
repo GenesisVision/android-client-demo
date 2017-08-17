@@ -9,5 +9,7 @@
     <string name="weeks">Weeks</string>
     <string name="profit">Profit</string>
 
-    <string name="trader_profile">Trader Profile</string>
+    <string name="invest">Invest</string>
+    <string name="days_left">%1$d days left</string>
+    <string name="own_fund">own fund</string>
 </resources>
