@@ -11,5 +11,8 @@
 
     <string name="invest">Invest</string>
     <string name="days_left">%1$d days left</string>
-    <string name="own_fund">own fund</string>
+    <string name="own_fund_currency">Own fund (%1$s)</string>
+    <string name="deposit_currency">Deposit (%1$s)</string>
+    <string name="profit_percent">Profit (%)</string>
+    <string name="can_not_load_trader_graphics">Can not load trader\'s graphics</string>
 </resources>

@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import vision.genesis.android.mvp.models.data.repository.TradersNetworkRepository
 import vision.genesis.android.mvp.models.data.repository.TradersRepository
+import vision.genesis.android.mvp.models.domain.GetTraderGraphicsInteractor
 import vision.genesis.android.mvp.models.domain.GetTradersListInteractor
 import vision.genesis.android.network.services.TradersService
 import javax.inject.Singleton
@@ -20,5 +21,11 @@ class InteractorsModule {
     @Singleton
     fun provideGetTradersInteractor(tradersRepository: TradersRepository):GetTradersListInteractor {
         return GetTradersListInteractor(tradersRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetTraderGraphicsInteractor(tradersRepository: TradersRepository):GetTraderGraphicsInteractor {
+        return GetTraderGraphicsInteractor(tradersRepository)
     }
 }

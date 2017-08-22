@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/daysLeftView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textColor="@color/colorFontLight"
+            android:drawableLeft="@drawable/ic_access_time_black_18dp"
+            android:drawablePadding="@dimen/drawable_padding"
+            android:textSize="@dimen/regular_font_size" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/profile_chart_height">
+            <ProgressBar android:id="@+id/loader"
+                android:indeterminate="true"
+                android:layout_width="@dimen/loader_size"
+                android:layout_height="@dimen/loader_size"
+                style="?android:attr/progressBarStyle"
+                android:layout_centerInParent="true"/>
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/profitChartView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/internal_navigation_button_height"
+                android:visibility="gone" />
+            <LinearLayout
+                android:id="@+id/graphicsNavigationContainer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/internal_navigation_button_height"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </RelativeLayout>
+        <include layout="@layout/fragment_profile_info" />
+        <include layout="@layout/fragment_profile_invest" />
+    </LinearLayout>
+
+</ScrollView>

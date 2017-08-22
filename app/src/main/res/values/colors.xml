@@ -11,4 +11,5 @@
     <color name="colorGrayBackground">#f3f3f4</color>
     <color name="colorGrayDivider">#d8e0e5</color>
     <color name="colorAzure">#22cec0</color>
+    <color name="colorAzureLight">#e5eeed</color>
 </resources>

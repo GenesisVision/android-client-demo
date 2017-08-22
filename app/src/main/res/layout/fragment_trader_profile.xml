@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:textColor="@color/colorFontLight"
+        android:drawableLeft="@drawable/ic_access_time_black_18dp"
+        android:drawablePadding="@dimen/drawable_padding"
         android:textSize="@dimen/regular_font_size" />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -21,84 +24,24 @@
             android:layout_height="@dimen/loader_size"
             style="?android:attr/progressBarStyle"
             android:layout_centerInParent="true"/>
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/trader_profile_info_height"
-        android:background="@android:color/white"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/profitView"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/text_profile_header"/>
-            <TextView
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/profit"
-                style="@style/text_profile_title"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/fundView"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/text_profile_header"/>
-            <TextView
-                android:id="@+id/fundTitleView"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/own_fund"
-                style="@style/text_profile_title"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.33"
-            android:orientation="vertical"
-            android:gravity="center">
-            <TextView
-                android:id="@+id/depositView"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/text_profile_header"/>
-            <TextView
-                android:id="@+id/depositTitleView"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/deposit"
-                style="@style/text_profile_title"/>
-        </LinearLayout>
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/trader_profile_button_container_height"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:background="@android:color/white">
-        <Button
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/profitChartView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/trader_profile_button_height"
-            android:layout_centerInParent="true"
-            style="@style/button_primary_dark"
-            android:text="@string/invest" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/internal_navigation_button_height"
+            android:visibility="gone" />
+        <LinearLayout
+            android:id="@+id/graphicsNavigationContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/internal_navigation_button_height"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+        </LinearLayout>
     </RelativeLayout>
+
+    <include layout="@layout/fragment_profile_info"/>
+    <include layout="@layout/fragment_profile_invest" />
 </LinearLayout>

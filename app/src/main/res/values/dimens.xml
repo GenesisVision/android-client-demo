@@ -32,4 +32,10 @@
 
     <dimen name="divider_width">1dp</dimen>
     <dimen name="button_corner_radius">10dp</dimen>
+    <dimen name="button_corner_radius_small">5dp</dimen>
+
+    <dimen name="drawable_padding">4dp</dimen>
+
+    <dimen name="internal_navigation_button_height">35dp</dimen>
+    <dimen name="profile_chart_height">250dp</dimen>
 </resources>

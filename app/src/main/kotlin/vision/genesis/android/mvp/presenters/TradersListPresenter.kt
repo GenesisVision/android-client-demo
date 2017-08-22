@@ -53,6 +53,7 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
     }
 
     private fun loadTradersList(skip: Int) {
+        val errorDefaultMessage = context.getString(R.string.can_not_load_traders)
         val subscription = getTradersListInteractor.execute(skip)
             .subscribe({
                 hideLoading()
@@ -71,7 +72,7 @@ class TradersListPresenter: BasePresenter<TradersListView>() {
                 viewState.hideError()
             }, {
                 hideLoading()
-                viewState.showError(it.message ?: context.getString(R.string.can_not_load_traders))
+                viewState.showError(it.message ?: errorDefaultMessage)
             })
 
         unsubscribeOnDestroy(subscription)
