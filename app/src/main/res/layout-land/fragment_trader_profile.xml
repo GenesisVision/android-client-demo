@@ -18,6 +18,9 @@
             android:drawableLeft="@drawable/ic_access_time_black_18dp"
             android:drawablePadding="@dimen/drawable_padding"
             android:textSize="@dimen/regular_font_size" />
+
+        <include layout="@layout/fragment_profile_navigation"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/profile_chart_height">
@@ -43,6 +46,13 @@
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal">
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/tokenHoldersList"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/token_holders_container_height"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
         </RelativeLayout>
         <include layout="@layout/fragment_profile_info" />
         <include layout="@layout/fragment_profile_invest" />

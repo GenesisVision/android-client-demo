@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal">
+    <ToggleButton
+        android:id="@+id/traderGraphicsSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/toggle_button_main_navigation"
+        android:textOff="@string/trader_graph"
+        android:textOn="@string/trader_graph" />
+    <ToggleButton
+        android:id="@+id/tokenHoldersSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/toggle_button_main_navigation"
+        android:textOff="@string/token_holders"
+        android:textOn="@string/token_holders" />
+</LinearLayout>

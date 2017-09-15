@@ -9,6 +9,7 @@ import vision.genesis.android.Screens
 import vision.genesis.android.mvp.models.data.TraderGraphics
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.models.domain.GetTraderGraphicsInteractor
+import vision.genesis.android.mvp.models.domain.GetTraderTokenHoldersInteractor
 import vision.genesis.android.mvp.views.TraderProfileView
 import javax.inject.Inject
 
@@ -19,6 +20,9 @@ class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderPr
 
     @Inject
     lateinit var getTraderGraphicsInteractor: GetTraderGraphicsInteractor
+
+    @Inject
+    lateinit var getTraderTokenHoldersInteractor: GetTraderTokenHoldersInteractor
 
     private var selectedGraphicIndex: Int = 0
 
@@ -34,7 +38,9 @@ class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderPr
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.showTraderInfo(traderInfo)
+        viewState.selectGraphics()
         loadTraderGraphics()
+        loadTraderTokenHolders()
     }
 
     fun goToBackScreen() {
@@ -47,6 +53,14 @@ class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderPr
         }
     }
 
+    fun selectGraphics() {
+        viewState.selectGraphics()
+    }
+
+    fun selectTokenHolders() {
+        viewState.selectTokens()
+    }
+
     private fun loadTraderGraphics() {
         val errorDefaultMessage = context.getString(R.string.can_not_load_trader_graphics)
         val subscription = getTraderGraphicsInteractor.execute(traderInfo.id)
@@ -56,13 +70,26 @@ class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderPr
                 viewState.showTraderGraphics(it)
                 selectedGraphicIndex = 0
 
-                if (it.size > 0) {
+                if (it.isNotEmpty()) {
                     viewState.showSelectedTraderGraphic(it[0], 0)
                 }
             }, {
                 viewState.hideLoading()
                 viewState.showError(it.message ?: errorDefaultMessage)
             })
+        unsubscribeOnDestroy(subscription)
+    }
+
+    private fun loadTraderTokenHolders() {
+        val errorDefaultMessage = context.getString(R.string.can_not_load_trader_holders)
+        val subscription = getTraderTokenHoldersInteractor.execute(traderInfo.id)
+                .subscribe({
+                    viewState.showTokenHolders(it)
+                    viewState.hideLoading()
+                }, {
+                    viewState.hideLoading()
+                    viewState.showError(it.message ?: errorDefaultMessage)
+                })
         unsubscribeOnDestroy(subscription)
     }
 }

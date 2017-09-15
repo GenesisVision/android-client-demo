@@ -15,4 +15,10 @@
     <string name="deposit_currency">Deposit (%1$s)</string>
     <string name="profit_percent">Profit (%)</string>
     <string name="can_not_load_trader_graphics">Can not load trader\'s graphics</string>
+    <string name="can_not_load_trader_holders">Can not load trader\'s holders</string>
+
+    <string name="trader_graph">Trader graph</string>
+    <string name="token_holders">Token holders</string>
+    <string name="tokens">Tokens</string>
+    <string name="top">Top</string>
 </resources>

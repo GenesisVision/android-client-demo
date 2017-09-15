@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="@dimen/token_holders_item_width"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/tokenHolderInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/token_holders_container_info_height"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:background="@drawable/background_white_container">
+        <ImageView
+            android:id="@+id/avatarView"
+            android:layout_width="@dimen/traders_item_avatar_size"
+            android:layout_height="@dimen/traders_item_avatar_size"
+            android:layout_marginTop="@dimen/token_holders_vertical_margin" />
+        <TextView
+            android:id="@+id/tokensNumberView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_profile_header"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tokens"
+            style="@style/text_profile_title"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/isTopBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top"
+        android:textColor="@color/colorFontLight"
+        android:textSize="@dimen/small_font_size"
+        android:textAllCaps="true"
+        android:padding="@dimen/token_holders_badge_padding"
+        android:background="@drawable/background_stroke_gray"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/token_holders_badge_margin"
+        android:layout_marginTop="@dimen/token_holders_badge_margin_top"/>
+    <TextView
+        android:id="@+id/plusBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tokenHolderInfoContainer"
+        android:textColor="@color/colorFontDark"
+        android:textSize="@dimen/small_font_size"
+        android:padding="@dimen/token_holders_badge_padding"
+        android:background="@drawable/background_stroke_gray"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/token_holders_badge_margin" />
+</RelativeLayout>

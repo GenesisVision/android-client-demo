@@ -3,6 +3,7 @@ package vision.genesis.android.mvp.views
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
+import vision.genesis.android.mvp.models.data.TokenHolder
 import vision.genesis.android.mvp.models.data.TraderGraphics
 import vision.genesis.android.mvp.models.data.TraderInfo
 
@@ -14,4 +15,7 @@ interface TraderProfileView : MvpView {
     fun showSelectedTraderGraphic(graphic: TraderGraphics, selectedItem: Int)
     fun showError(message: String)
     fun hideLoading()
+    fun selectGraphics()
+    fun selectTokens()
+    fun showTokenHolders(tokenHolders: List<TokenHolder>)
 }

@@ -3,6 +3,7 @@ package vision.genesis.android.ui.fragments
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
@@ -17,15 +18,18 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_trader_profile.*
 import kotlinx.android.synthetic.main.fragment_profile_info.*
-import kotlinx.android.synthetic.main.fragment_profile_invest.*
+import kotlinx.android.synthetic.main.fragment_profile_navigation.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.forEachChild
 import org.jetbrains.anko.windowManager
 import vision.genesis.android.R
+import vision.genesis.android.mvp.models.data.TokenHolder
 import vision.genesis.android.mvp.models.data.TraderGraphics
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.presenters.TraderProfilePresenter
 import vision.genesis.android.mvp.views.TraderProfileView
+import vision.genesis.android.ui.adapters.TokenHoldersAdapter
+import vision.genesis.android.ui.views.TokenHolderDecoration
 import java.util.*
 
 
@@ -39,6 +43,8 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
         val traderInfo = arguments?.getParcelable<TraderInfo>(TRADER_INFO_ARG)!!
         return TraderProfilePresenter(traderInfo)
     }
+
+    private lateinit var holdersAdapter: TokenHoldersAdapter
 
     companion object Factory {
         val TRADER_INFO_ARG = "trader"
@@ -54,6 +60,7 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        holdersAdapter = TokenHoldersAdapter()
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -65,6 +72,23 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
 
         loader.indeterminateDrawable.setColorFilter(ContextCompat.getColor(context, R.color.colorPrimary),
                 android.graphics.PorterDuff.Mode.SRC_IN)
+
+        traderGraphicsSelector.setOnClickListener {
+            traderProfilePresenter.selectGraphics()
+        }
+
+        tokenHoldersSelector.setOnClickListener {
+            traderProfilePresenter.selectTokenHolders()
+        }
+
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        tokenHoldersList.layoutManager = linearLayoutManager
+        tokenHoldersList.adapter = holdersAdapter
+
+        val dividerSize = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+        tokenHoldersList.addItemDecoration(TokenHolderDecoration(dividerSize))
+
+        profitChartView.setNoDataText("")
     }
 
     override fun showTraderInfo(traderInfo: TraderInfo) {
@@ -81,11 +105,29 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
         daysLeftView.text = resources.getString(R.string.days_left, traderInfo.daysLeft)
     }
 
+    override fun selectGraphics() {
+        traderGraphicsSelector.isChecked = true
+        tokenHoldersSelector.isChecked = false
+
+        profitChartView.visibility = View.VISIBLE
+        graphicsNavigationContainer.visibility = View.VISIBLE
+        tokenHoldersList.visibility = View.GONE
+    }
+
+    override fun selectTokens() {
+        traderGraphicsSelector.isChecked = false
+        tokenHoldersSelector.isChecked = true
+
+        profitChartView.visibility = View.GONE
+        graphicsNavigationContainer.visibility = View.GONE
+        tokenHoldersList.visibility = View.VISIBLE
+    }
+
     override fun showTraderGraphics(graphics: List<TraderGraphics>) {
         val metrics = DisplayMetrics()
         context.windowManager.defaultDisplay.getMetrics(metrics)
         val width = (metrics.widthPixels
-                - resources.getDimension(R.dimen.activity_horizontal_margin).toInt() * 2).toInt() / graphics.size
+                - resources.getDimension(R.dimen.activity_horizontal_margin).toInt() * 2) / graphics.size
         val height = resources.getDimension(R.dimen.internal_navigation_button_height).toInt()
 
         var i: Int = 0
@@ -108,8 +150,6 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
     }
 
     private fun setupChart() {
-        profitChartView.visibility = View.VISIBLE
-
         profitChartView.description.isEnabled = false
         profitChartView.setDrawGridBackground(false)
         profitChartView.isDragEnabled = false
@@ -123,9 +163,10 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
     }
 
     private fun createToggleButton(width: Int, height: Int, label: String): ToggleButton {
-        val btn = ToggleButton(context, null, 0, R.style.toggle_button_navigation)
+        val btn = getLayoutInflater(null).inflate(R.layout.toggle_button_graphics, null) as ToggleButton
         btn.layoutParams = ViewGroup.LayoutParams(width, height)
-        btn.text = label
+        btn.textOn = label
+        btn.textOff = label
         return btn
     }
 
@@ -157,6 +198,10 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
         }
 
         return values
+    }
+
+    override fun showTokenHolders(tokenHolders: List<TokenHolder>) {
+        holdersAdapter.setHolders(tokenHolders)
     }
 
     private fun showToolbar(title: String) {

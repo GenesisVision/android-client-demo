@@ -37,5 +37,17 @@
     <dimen name="drawable_padding">4dp</dimen>
 
     <dimen name="internal_navigation_button_height">35dp</dimen>
-    <dimen name="profile_chart_height">250dp</dimen>
+    <dimen name="profile_chart_height">290dp</dimen>
+
+    <dimen name="navigation_button_vertical_padding">6dp</dimen>
+
+    <dimen name="token_holders_container_height">270dp</dimen>
+    <dimen name="token_holders_container_info_height">170dp</dimen>
+    <dimen name="token_holders_container_info_height_top">180dp</dimen>
+    <dimen name="token_holders_item_width">150dp</dimen>
+    <dimen name="token_holders_vertical_margin">20dp</dimen>
+    <dimen name="token_holders_vertical_margin_is_top">25dp</dimen>
+    <dimen name="token_holders_badge_margin_top">50dp</dimen>
+    <dimen name="token_holders_badge_margin">8dp</dimen>
+    <dimen name="token_holders_badge_padding">4dp</dimen>
 </resources>
