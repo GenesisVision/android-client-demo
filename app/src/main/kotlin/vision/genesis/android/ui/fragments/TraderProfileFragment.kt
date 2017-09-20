@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_trader_profile.*
 import kotlinx.android.synthetic.main.fragment_profile_info.*
+import kotlinx.android.synthetic.main.fragment_profile_invest.*
 import kotlinx.android.synthetic.main.fragment_profile_navigation.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.forEachChild
@@ -79,6 +80,10 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
 
         tokenHoldersSelector.setOnClickListener {
             traderProfilePresenter.selectTokenHolders()
+        }
+
+        investBtn.setOnClickListener {
+            traderProfilePresenter.goToEnterAmount()
         }
 
         val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)

@@ -47,6 +47,10 @@ class TraderProfilePresenter(val traderInfo: TraderInfo): BasePresenter<TraderPr
         router.backTo(Screens.TRADERS_LIST)
     }
 
+    fun goToEnterAmount() {
+        router.navigateTo(Screens.ENTER_AMOUNT, traderInfo)
+    }
+
     fun showGraphic(index: Int) {
         if (graphics != null && graphics!!.size > index) {
             viewState.showSelectedTraderGraphic(graphics!![index], index)

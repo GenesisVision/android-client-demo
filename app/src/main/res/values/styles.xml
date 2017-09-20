@@ -113,4 +113,18 @@
         <item name="android:minHeight">0dp</item>
     </style>
 
+    <style name="buy_button">
+        <item name="android:textSize">@dimen/regular_font_size</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingLeft">@dimen/traders_item_margin_small</item>
+        <item name="android:paddingRight">@dimen/traders_item_margin_small</item>
+        <item name="android:paddingTop">@dimen/traders_item_padding</item>
+        <item name="android:paddingBottom">@dimen/traders_item_padding</item>
+        <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:background">@drawable/background_azure_button</item>
+    </style>
+
 </resources>

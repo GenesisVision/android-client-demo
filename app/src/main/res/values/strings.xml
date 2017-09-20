@@ -21,4 +21,9 @@
     <string name="token_holders">Token holders</string>
     <string name="tokens">Tokens</string>
     <string name="top">Top</string>
+
+    <string name="enter_token_amount">Enter token amount</string>
+    <string name="available_tokens">Available tokens</string>
+    <string name="bid_for_one_token">Bid for one token (GVT)</string>
+    <string name="buy">Buy</string>
 </resources>

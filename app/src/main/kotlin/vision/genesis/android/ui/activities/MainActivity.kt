@@ -18,6 +18,7 @@ import vision.genesis.android.R
 import vision.genesis.android.Screens
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.network.services.TradersService
+import vision.genesis.android.ui.fragments.EnterAmountFragment
 import vision.genesis.android.ui.fragments.TraderProfileFragment
 import vision.genesis.android.ui.fragments.TradersListFragment
 import javax.inject.Inject
@@ -57,10 +58,13 @@ class MainActivity : MvpAppCompatActivity() {
                 return TradersListFragment.create()
             } else if (screenKey == Screens.TRADER_PROFILE) {
                 return TraderProfileFragment.create(data as TraderInfo)
+            } else if (screenKey == Screens.ENTER_AMOUNT) {
+                return EnterAmountFragment.create(data as TraderInfo)
             } else {
                 return null
             }
         }
+
         override fun exit() {
             finish()
         }
