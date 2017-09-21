@@ -45,11 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tokenHolderInfoContainer"
-        android:textColor="@color/colorFontDark"
-        android:textSize="@dimen/small_font_size"
-        android:padding="@dimen/token_holders_badge_padding"
-        android:background="@drawable/background_stroke_gray"
+        style="@style/text_badge"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
         android:layout_marginTop="@dimen/token_holders_badge_margin" />
 </RelativeLayout>

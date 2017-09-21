@@ -4,7 +4,10 @@ import com.arellomobile.mvp.InjectViewState
 import ru.terrakok.cicerone.Router
 import vision.genesis.android.GenesisVisionApp
 import vision.genesis.android.Screens
+import vision.genesis.android.mvp.models.data.AccountInfo
+import vision.genesis.android.mvp.models.data.PaymentArgs
 import vision.genesis.android.mvp.models.data.TraderInfo
+import vision.genesis.android.mvp.models.domain.AccountInteractor
 import vision.genesis.android.mvp.views.EnterAmountView
 import javax.inject.Inject
 
@@ -12,6 +15,9 @@ import javax.inject.Inject
 class EnterAmountPresenter(private val traderInfo: TraderInfo): BasePresenter<EnterAmountView>() {
     @Inject
     lateinit var router: Router
+
+    @Inject
+    lateinit var accountInteractor: AccountInteractor
 
     init {
         GenesisVisionApp.getAppComponent().inject(this)
@@ -24,10 +30,17 @@ class EnterAmountPresenter(private val traderInfo: TraderInfo): BasePresenter<En
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.showTraderInfo(traderInfo)
-        viewState.showUserInfo(AVAILABLE_TOKENS, BID_FOR_TOKEN)
+
+        val account = accountInteractor.execute()
+        viewState.showUserInfo(account.availableTokens, account.bidForOneToken)
     }
 
     fun goToBackScreen() {
         router.backTo(Screens.TRADER_PROFILE)
+    }
+
+    fun goToPaymentConfirmation(amountValue: Int) {
+        val args = PaymentArgs(traderInfo, amountValue)
+        router.navigateTo(Screens.PAYMENT_CONFIRMATION, args)
     }
 }

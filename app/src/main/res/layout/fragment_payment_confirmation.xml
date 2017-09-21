@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootContainer"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.5">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/accountAvatarView"
+                android:layout_width="@dimen/payment_confirmation_avatar_size"
+                android:layout_height="@dimen/payment_confirmation_avatar_size" />
+            <TextView
+                android:id="@+id/accountNameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_items_title"
+                android:textColor="@color/colorFontDark" />
+            <TextView
+                android:id="@+id/accountDescriptionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_description" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from"
+                style="@style/text_badge"
+                android:layout_marginTop="@dimen/payment_confirmation_item_margin_top"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/divider_width"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@color/colorGrayDivider" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.5">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/traderAvatarView"
+                android:layout_width="@dimen/payment_confirmation_avatar_size"
+                android:layout_height="@dimen/payment_confirmation_avatar_size" />
+            <TextView
+                android:id="@+id/traderNameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_items_title"
+                android:textColor="@color/colorFontDark" />
+            <TextView
+                android:id="@+id/traderDescriptionView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                style="@style/text_description" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to"
+                style="@style/text_badge"
+                android:layout_marginTop="@dimen/payment_confirmation_item_margin_top"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/fragment_payment_info"/>
+
+</LinearLayout>

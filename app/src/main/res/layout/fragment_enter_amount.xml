@@ -61,7 +61,7 @@
             android:inputType="number" />
     </android.support.design.widget.TextInputLayout>
     <TextView
-        android:id="@+id/currencyView"
+        android:id="@+id/buyView"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

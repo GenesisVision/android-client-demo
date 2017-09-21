@@ -127,4 +127,41 @@
         <item name="android:background">@drawable/background_azure_button</item>
     </style>
 
+    <style name="button_cancel">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/background_cancel_button</item>
+        <item name="android:textColor">@color/colorFontDark</item>
+        <item name="android:textSize">@dimen/header_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="button_confirm">
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+        <item name="android:background">@drawable/background_confirm_button</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/header_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="text_description">
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="text_badge">
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/colorFontDark</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/token_holders_badge_padding</item>
+        <item name="android:background">@drawable/background_stroke_gray</item>
+    </style>
+
 </resources>

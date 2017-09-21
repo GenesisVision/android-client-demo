@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -19,7 +17,6 @@ import kotlinx.android.synthetic.main.toolbar.*
 import vision.genesis.android.R
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.mvp.presenters.EnterAmountPresenter
-import vision.genesis.android.mvp.presenters.TraderProfilePresenter
 import vision.genesis.android.mvp.views.EnterAmountView
 
 
@@ -29,7 +26,7 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
 
     @ProvidePresenter(type = PresenterType.LOCAL)
     fun provideEnterAmountPresenter(): EnterAmountPresenter {
-        val traderInfo = arguments?.getParcelable<TraderInfo>(TraderProfileFragment.TRADER_INFO_ARG)!!
+        val traderInfo = arguments?.getParcelable<TraderInfo>(EnterAmountFragment.TRADER_INFO_ARG)!!
         return EnterAmountPresenter(traderInfo)
     }
 
@@ -47,17 +44,43 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
 
     private var maxAmountValue = 999999
 
+    private var lastAmountValue = 0
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_enter_amount, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        amountView.isFocusableInTouchMode = true
         amountView.requestFocus()
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.showSoftInput(amountView, InputMethodManager.SHOW_IMPLICIT)
 
         limitAmountView()
+
+        buyView.setOnClickListener{
+            buyTokens()
+        }
+
+        amountView.setOnEditorActionListener { textView, actionId, keyEvent ->
+            if ((keyEvent != null && keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                buyTokens()
+            }
+            false
+        }
+    }
+
+    override fun onPause() {
+        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(amountView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        super.onPause()
+    }
+
+    private fun buyTokens() {
+        if (lastAmountValue > 0) {
+            enterAmountPresenter.goToPaymentConfirmation(lastAmountValue)
+        }
     }
 
     private fun limitAmountView() {
@@ -71,15 +94,19 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
             override fun afterTextChanged(str: Editable?) {
                 try {
                     val value = str?.toString()?.toInt()
-                    if (value != null && value > maxAmountValue) {
-                        amountView.setText(maxAmountValue.toString())
+                    value?.let {
+                        if (it > maxAmountValue) {
+                            amountView.setText(maxAmountValue.toString())
+                            lastAmountValue = maxAmountValue
+                        } else {
+                            lastAmountValue = it
+                        }
                     }
                 } catch (e: NumberFormatException) {
                     e.printStackTrace()
                 }
             }
         })
-
     }
 
     override fun showTraderInfo(traderInfo: TraderInfo) {

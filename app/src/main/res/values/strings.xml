@@ -26,4 +26,13 @@
     <string name="available_tokens">Available tokens</string>
     <string name="bid_for_one_token">Bid for one token (GVT)</string>
     <string name="buy">Buy</string>
+
+    <string name="amount">Amount</string>
+    <string name="max_transaction_fee">Max transaction fee</string>
+    <string name="max_total">Max total</string>
+    <string name="reject">Reject</string>
+    <string name="confirm">Confirm</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="complete">Complete</string>
 </resources>

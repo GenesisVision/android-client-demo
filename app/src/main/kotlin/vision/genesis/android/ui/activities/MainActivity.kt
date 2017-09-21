@@ -16,9 +16,11 @@ import ru.terrakok.cicerone.commands.Replace
 import vision.genesis.android.GenesisVisionApp
 import vision.genesis.android.R
 import vision.genesis.android.Screens
+import vision.genesis.android.mvp.models.data.PaymentArgs
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.network.services.TradersService
 import vision.genesis.android.ui.fragments.EnterAmountFragment
+import vision.genesis.android.ui.fragments.PaymentConfirmationFragment
 import vision.genesis.android.ui.fragments.TraderProfileFragment
 import vision.genesis.android.ui.fragments.TradersListFragment
 import javax.inject.Inject
@@ -60,6 +62,9 @@ class MainActivity : MvpAppCompatActivity() {
                 return TraderProfileFragment.create(data as TraderInfo)
             } else if (screenKey == Screens.ENTER_AMOUNT) {
                 return EnterAmountFragment.create(data as TraderInfo)
+            } else if (screenKey == Screens.PAYMENT_CONFIRMATION) {
+                val args = data as PaymentArgs
+                return PaymentConfirmationFragment.create(args.traderInfo, args.amountValue)
             } else {
                 return null
             }
