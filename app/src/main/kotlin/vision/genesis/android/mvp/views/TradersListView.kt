@@ -19,8 +19,11 @@ interface TradersListView : MvpView {
 
     fun showListProgress()
     fun hideListProgress()
+    fun checkAddressDialog()
 
     fun setTraders(traders: List<TraderInfo>)
+
+    fun showGvtValue(gvt: Float)
 
     @StateStrategyType(AddToEndStrategy::class)
     fun addTraders(traders: List<TraderInfo>)

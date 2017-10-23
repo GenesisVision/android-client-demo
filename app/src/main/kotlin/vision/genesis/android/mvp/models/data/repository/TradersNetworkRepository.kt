@@ -41,10 +41,20 @@ class TradersNetworkRepository(val service: TradersService): TradersRepository {
         }
     }
 
-    override fun getPaymentInfo(amount: Int): Observable<PaymentInfo> {
+    override fun getPaymentInfo(amount: Float): Observable<PaymentInfo> {
         return service.getPaymentInfo(amount).flatMap {
             if (it.isSuccess) {
                 Observable.just(it.result)
+            } else {
+                Observable.error(Exception(it.status))
+            }
+        }
+    }
+
+    override fun getGvtValue(address: String): Observable<Float> {
+        return service.getGvtValue(address).flatMap {
+            if (it.isSuccess) {
+                Observable.just(it.gvtValue)
             } else {
                 Observable.error(Exception(it.status))
             }

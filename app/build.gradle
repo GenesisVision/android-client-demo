@@ -10,8 +10,8 @@ android {
         applicationId "vision.genesis.android"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "0.1.0"
     }
 
     sourceSets {
@@ -21,11 +21,13 @@ android {
     buildTypes {
         debug {
             // temp api address
-            buildConfigField "String", "API_ADDRESS", "\"http://arsich.ru/traders_api/\""
+            buildConfigField "String", "API_ADDRESS", "\"http://gv-api.azurewebsites.net/\""
         }
         release {
             // temp api address
-            buildConfigField "String", "API_ADDRESS", "\"http://arsich.ru/traders_api/\""
+            buildConfigField "String", "API_ADDRESS", "\"http://gv-api.azurewebsites.net/\""
+
+            applicationIdSuffix '.demo'
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

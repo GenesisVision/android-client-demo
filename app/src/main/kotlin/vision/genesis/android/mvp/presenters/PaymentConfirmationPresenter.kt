@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @InjectViewState
 class PaymentConfirmationPresenter(private val traderInfo: TraderInfo,
-                                   private val tokenAmount: Int): BasePresenter<PaymentConfirmationView>() {
+                                   private val tokenAmount: Float): BasePresenter<PaymentConfirmationView>() {
     @Inject
     lateinit var router: Router
 
@@ -34,7 +34,7 @@ class PaymentConfirmationPresenter(private val traderInfo: TraderInfo,
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.showTraderInfo(traderInfo)
-        viewState.showAccountInfo(accountInteractor.execute())
+        viewState.showAccountInfo(AccountInteractor.account)
         loadPaymentInfo()
     }
 

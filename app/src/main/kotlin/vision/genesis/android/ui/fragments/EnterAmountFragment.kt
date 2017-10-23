@@ -42,9 +42,9 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
         }
     }
 
-    private var maxAmountValue = 999999
+    private var maxAmountValue: Float = 999999f
 
-    private var lastAmountValue = 0
+    private var lastAmountValue: Float = 0f
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater?.inflate(R.layout.fragment_enter_amount, container, false)
@@ -93,7 +93,7 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
             }
             override fun afterTextChanged(str: Editable?) {
                 try {
-                    val value = str?.toString()?.toInt()
+                    val value = str?.toString()?.toFloat()
                     value?.let {
                         if (it > maxAmountValue) {
                             amountView.setText(maxAmountValue.toString())
@@ -113,7 +113,7 @@ class EnterAmountFragment : MvpAppCompatFragment(), EnterAmountView {
         showToolbar(traderInfo.name)
     }
 
-    override fun showUserInfo(availableTokens: Int, bidForToken: Float) {
+    override fun showUserInfo(availableTokens: Float, bidForToken: Float) {
         availableTokensView.text = availableTokens.toString()
         bidTokensView.text = bidForToken.toString()
 

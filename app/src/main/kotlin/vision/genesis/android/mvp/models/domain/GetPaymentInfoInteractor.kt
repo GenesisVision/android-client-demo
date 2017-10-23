@@ -6,7 +6,7 @@ import vision.genesis.android.mvp.models.data.repository.TradersRepository
 
 
 class GetPaymentInfoInteractor(val tradersRepository: TradersRepository) {
-    fun execute(amount: Int): Observable<PaymentInfo> {
+    fun execute(amount: Float): Observable<PaymentInfo> {
         return tradersRepository.getPaymentInfo(amount)
     }
 }

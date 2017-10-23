@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:id="@+id/plusToolbarText"
+    android:text=""
+    android:drawableRight="@drawable/ic_add_circle_black_24dp"
+    android:drawablePadding="@dimen/drawable_padding"
+    android:textColor="@color/colorFontDark"
+    android:gravity="center"
+    style="@style/text_items_header"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:textSize="@dimen/regular_font_size"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"/>

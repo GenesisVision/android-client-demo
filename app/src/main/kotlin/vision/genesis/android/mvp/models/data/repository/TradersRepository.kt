@@ -12,5 +12,6 @@ interface TradersRepository {
     fun getTraderList(skip: Int): Observable<List<TraderInfo>>
     fun getTraderGraphics(traderId: Long): Observable<List<TraderGraphics>>
     fun getTraderTokenHolders(traderId: Long): Observable<List<TokenHolder>>
-    fun getPaymentInfo(amount: Int): Observable<PaymentInfo>
+    fun getPaymentInfo(amount: Float): Observable<PaymentInfo>
+    fun getGvtValue(address: String): Observable<Float>
 }

@@ -42,20 +42,8 @@ class TokenHoldersAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             itemView.plusBadge.text = "+" + holder.plus
 
             if (holder.isTop) {
-                val containerHeight = itemView.context.resources.getDimensionPixelSize(R.dimen.token_holders_container_info_height_top)
-                itemView.tokenHolderInfoContainer.layoutParams.height = containerHeight
-
-                val marginTop = itemView.context.resources.getDimensionPixelSize(R.dimen.token_holders_vertical_margin_is_top)
-                (itemView.avatarView.layoutParams as ViewGroup.MarginLayoutParams).topMargin = marginTop
-
                 itemView.isTopBadge.visibility = View.VISIBLE
             } else {
-                val containerHeight = itemView.context.resources.getDimensionPixelSize(R.dimen.token_holders_container_info_height)
-                itemView.tokenHolderInfoContainer.layoutParams.height = containerHeight
-
-                val marginTop = itemView.context.resources.getDimensionPixelSize(R.dimen.token_holders_vertical_margin)
-                (itemView.avatarView.layoutParams as ViewGroup.MarginLayoutParams).topMargin = marginTop
-
                 itemView.isTopBadge.visibility = View.GONE
             }
         }

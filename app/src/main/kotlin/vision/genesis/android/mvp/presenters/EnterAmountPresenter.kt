@@ -31,7 +31,7 @@ class EnterAmountPresenter(private val traderInfo: TraderInfo): BasePresenter<En
         super.onFirstViewAttach()
         viewState.showTraderInfo(traderInfo)
 
-        val account = accountInteractor.execute()
+        val account = AccountInteractor.account
         viewState.showUserInfo(account.availableTokens, account.bidForOneToken)
     }
 
@@ -39,7 +39,7 @@ class EnterAmountPresenter(private val traderInfo: TraderInfo): BasePresenter<En
         router.backTo(Screens.TRADER_PROFILE)
     }
 
-    fun goToPaymentConfirmation(amountValue: Int) {
+    fun goToPaymentConfirmation(amountValue: Float) {
         val args = PaymentArgs(traderInfo, amountValue)
         router.navigateTo(Screens.PAYMENT_CONFIRMATION, args)
     }

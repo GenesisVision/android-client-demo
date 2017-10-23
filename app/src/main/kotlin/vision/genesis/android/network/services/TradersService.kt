@@ -8,6 +8,7 @@ import vision.genesis.android.mvp.models.data.TokenHolder
 import vision.genesis.android.mvp.models.data.TraderGraphics
 import vision.genesis.android.mvp.models.data.TraderInfo
 import vision.genesis.android.network.ApiResponse
+import vision.genesis.android.network.EtherScanApiResponse
 
 class TradersService(api: TradersApi) {
     val api: TradersApi = api
@@ -23,7 +24,11 @@ class TradersService(api: TradersApi) {
         return api.getTraderTokenHolders(traderId).subscribeOnIoThread().observeOnMainThread()
     }
 
-    fun getPaymentInfo(amount: Int): Observable<ApiResponse<PaymentInfo>> {
+    fun getPaymentInfo(amount: Float): Observable<ApiResponse<PaymentInfo>> {
         return api.getPaymentInfo(amount).subscribeOnIoThread().observeOnMainThread()
+    }
+
+    fun getGvtValue(address: String): Observable<EtherScanApiResponse> {
+        return api.getGvtValue("https://api.etherscan.io/api", address).subscribeOnIoThread().observeOnMainThread()
     }
 }

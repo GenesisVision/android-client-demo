@@ -30,7 +30,7 @@ class PaymentConfirmationFragment: MvpAppCompatFragment(), PaymentConfirmationVi
     @ProvidePresenter(type = PresenterType.LOCAL)
     fun providePaymentPresenter(): PaymentConfirmationPresenter {
         val traderInfo = arguments?.getParcelable<TraderInfo>(PaymentConfirmationFragment.TRADER_INFO_ARG)!!
-        val amountValue = arguments?.getInt(PaymentConfirmationFragment.AMOUNT_VALUE)!!
+        val amountValue = arguments?.getFloat(PaymentConfirmationFragment.AMOUNT_VALUE)!!
         return PaymentConfirmationPresenter(traderInfo, amountValue)
     }
 
@@ -38,11 +38,11 @@ class PaymentConfirmationFragment: MvpAppCompatFragment(), PaymentConfirmationVi
         val TRADER_INFO_ARG = "trader"
         val AMOUNT_VALUE = "amountValue"
 
-        fun create(traderInfo: TraderInfo, amountValue: Int): PaymentConfirmationFragment {
+        fun create(traderInfo: TraderInfo, amountValue: Float): PaymentConfirmationFragment {
             val instance = PaymentConfirmationFragment()
             val args = Bundle()
             args.putParcelable(TRADER_INFO_ARG, traderInfo)
-            args.putInt(AMOUNT_VALUE, amountValue)
+            args.putFloat(AMOUNT_VALUE, amountValue)
             instance.arguments = args
             return instance
         }
@@ -82,11 +82,11 @@ class PaymentConfirmationFragment: MvpAppCompatFragment(), PaymentConfirmationVi
     }
 
     override fun showPaymentInfo(info: PaymentInfo) {
-        amountValueView.text = info.amount.toString() + " ETH"
+        amountValueView.text = info.amount.toString() + " GVT"
         amountValueUSDView.text = info.amountUSD.toString() + " USD"
-        amountFeeView.text = info.fee.toString() + " ETH"
+        amountFeeView.text = info.fee.toString() + " GVT"
         amountFeeUSDView.text = info.feeUSD.toString() + " USD"
-        amountTotalView.text = (info.amount + info.fee).toString() + " ETH"
+        amountTotalView.text = (info.amount + info.fee).toString() + " GVT"
         amountTotalUSDView.text = (info.amountUSD + info.feeUSD).toString() + " USD"
     }
 

@@ -3,6 +3,7 @@
 
     <string name="traders">Traders</string>
     <string name="can_not_load_traders">Can not load traders list</string>
+    <string name="can_not_load_gvt">No GVT found</string>
 
     <string name="deposit">Deposit</string>
     <string name="trades">Trades</string>
@@ -35,4 +36,6 @@
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="complete">Complete</string>
+    <string name="enter_gvt">If you already have an Ethereum wallet with GVT, enter the\u00A0address\u00A0please</string>
+    <string name="ok">OK</string>
 </resources>

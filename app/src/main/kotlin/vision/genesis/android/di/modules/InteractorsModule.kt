@@ -42,6 +42,12 @@ class InteractorsModule {
 
     @Provides
     @Singleton
+    fun provideGetGvtValueInteractor(tradersRepository: TradersRepository):GetGvtValueInteractor {
+        return GetGvtValueInteractor(tradersRepository)
+    }
+
+    @Provides
+    @Singleton
     fun provideAccountInteractor():AccountInteractor {
         return AccountInteractor()
     }

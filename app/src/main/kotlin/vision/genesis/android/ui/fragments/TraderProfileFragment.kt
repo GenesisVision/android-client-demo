@@ -188,6 +188,7 @@ class TraderProfileFragment : MvpAppCompatFragment(), TraderProfileView {
         set.lineWidth = 2f
         set.color = ContextCompat.getColor(context, R.color.colorAzure)
         set.setDrawCircles(false)
+        set.mode = LineDataSet.Mode.CUBIC_BEZIER
 
         val data = LineData(set)
         profitChartView.data = data

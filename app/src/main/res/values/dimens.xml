@@ -47,7 +47,7 @@
     <dimen name="token_holders_item_width">150dp</dimen>
     <dimen name="token_holders_vertical_margin">20dp</dimen>
     <dimen name="token_holders_vertical_margin_is_top">25dp</dimen>
-    <dimen name="token_holders_badge_margin_top">50dp</dimen>
+    <dimen name="token_holders_badge_margin_top">24dp</dimen>
     <dimen name="token_holders_badge_margin">8dp</dimen>
     <dimen name="token_holders_badge_padding">4dp</dimen>
 
@@ -55,4 +55,6 @@
     <dimen name="payment_confirmation_item_margin_top">12dp</dimen>
     <dimen name="payment_confirmation_avatar_size">80dp</dimen>
     <dimen name="payment_confirmation_account_info_height">240dp</dimen>
+
+    <dimen name="address_dialog_width">200dp</dimen>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_add_tokens"
+        app:actionLayout="@layout/toolbar_plus"
+        android:title=""
+        app:showAsAction="always|withText"/>
+    <item
+        android:id="@+id/action_change_address"
+        android:icon="@drawable/ic_account_balance_wallet_black_24dp"
+        android:title=""
+        app:showAsAction="always|withText"/>
+</menu>

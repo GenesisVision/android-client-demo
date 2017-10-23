@@ -120,6 +120,7 @@ class TradersListAdapter(val parentPresenter: TradersListPresenter): RecyclerVie
             set.lineWidth = 2f
             set.color = ContextCompat.getColor(itemView.context, R.color.colorAzure)
             set.setDrawCircles(false)
+            set.mode = LineDataSet.Mode.CUBIC_BEZIER
             val data = LineData(set)
             itemView.profitChartView.data = data
 
