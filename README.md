@@ -1,6 +1,6 @@
 # android-demo-client (PoC)
 
-Proof of concept (PoC) Demo Genesis Vision Android client (depricated)
+Proof of concept (PoC) Demo Genesis Vision Android client (deprecated)
 
 Android Investor Client repository : https://github.com/GenesisVision/android-client
 
