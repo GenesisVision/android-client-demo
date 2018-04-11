@@ -1,4 +1,4 @@
-# android-client
+# android-demo-client (PoC)
 
 Proof of concept (PoC) Demo Genesis Vision Android client (depricated)
 
